@@ -1,7 +1,7 @@
 // Vercel Serverless Function for Chatbot Backend
 // Ascunde si proceseaza cheia de API Nvidia
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
     // Permite CORS pentru testare
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
