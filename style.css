@@ -1832,9 +1832,16 @@ footer {
     .container {
         padding: 0 1rem;
     }
-    .hero h1 {
+    .hero h1, .contact-info h2 {
         font-size: 1.8rem;
         word-wrap: break-word;
+    }
+    .contact-method strong {
+        word-break: break-all;
+        font-size: 1rem;
+    }
+    .glass-form {
+        padding: 1.5rem;
     }
     #chatbot-widget {
         bottom: 15px;
