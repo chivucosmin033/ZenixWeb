@@ -17,12 +17,15 @@
     scroll-behavior: smooth;
 }
 
+body, html {
+    overflow-x: hidden;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--dark);
     color: var(--light);
     line-height: 1.6;
-    overflow-x: hidden;
     position: relative;
 }
 
@@ -1811,8 +1814,15 @@ footer {
     100% { opacity: 0.4; }
 }
 
-/* ===== Chatbot Mobile Fixes ===== */
+/* ===== Mobile Fixes ===== */
 @media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+    .hero h1 {
+        font-size: 2rem;
+        word-wrap: break-word;
+    }
     #chatbot-widget {
         bottom: 15px;
         right: 15px;
