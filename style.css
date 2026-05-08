@@ -1836,9 +1836,13 @@ footer {
         font-size: 1.8rem;
         word-wrap: break-word;
     }
+    .contact-method {
+        padding: 1rem;
+        gap: 1rem;
+    }
     .contact-method strong {
-        word-break: break-all;
-        font-size: 1rem;
+        word-break: break-word;
+        font-size: 0.9rem;
     }
     .glass-form {
         padding: 1.5rem;

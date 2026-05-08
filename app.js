@@ -118,24 +118,62 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ===== Handle Form Submission =====
+    // ===== Handle Form Submission via Web3Forms =====
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const formData = new FormData(contactForm);
-            console.log('Form Submit:', Object.fromEntries(formData));
 
-            const btn = contactForm.querySelector('button');
+            const btn = contactForm.querySelector('button[type="submit"]');
             const originalText = btn.innerText;
-            btn.innerText = '✓ Mesaj Trimis!';
-            btn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
 
-            setTimeout(() => {
-                btn.innerText = originalText;
-                btn.style.background = '';
-                contactForm.reset();
-            }, 3000);
+            // Loading state
+            btn.innerText = 'Se trimite...';
+            btn.disabled = true;
+            btn.style.opacity = '0.7';
+
+            const formData = new FormData(contactForm);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: json
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Success state
+                    btn.innerText = '✓ Mesaj Trimis!';
+                    btn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
+                    btn.style.opacity = '1';
+                    contactForm.reset();
+
+                    setTimeout(() => {
+                        btn.innerText = originalText;
+                        btn.style.background = '';
+                        btn.disabled = false;
+                    }, 4000);
+                } else {
+                    throw new Error(result.message || 'Eroare la trimitere');
+                }
+            } catch (error) {
+                btn.innerText = '✗ Eroare! Încearcă din nou';
+                btn.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+                btn.style.opacity = '1';
+                btn.disabled = false;
+
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.style.background = '';
+                }, 4000);
+            }
         });
     }
 

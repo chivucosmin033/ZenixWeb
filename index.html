@@ -359,14 +359,18 @@
                     </div>
                 </div>
                 <form id="contact-form" class="glass-form">
+                    <!-- Web3Forms hidden field -->
+                    <input type="hidden" name="access_key" value="b348b732-baa9-4b22-bb4d-1a81f8ae9202">
+                    <input type="hidden" name="subject" value="Mesaj nou de pe ZenixWeb">
+                    <input type="hidden" name="from_name" value="ZenixWeb Contact Form">
                     <div class="input-group">
-                        <input type="text" placeholder="Numele tău" required>
+                        <input type="text" name="name" placeholder="Numele tău" required>
                     </div>
                     <div class="input-group">
-                        <input type="email" placeholder="Email" required>
+                        <input type="email" name="email" placeholder="Email" required>
                     </div>
                     <div class="input-group">
-                        <textarea placeholder="Mesajul tău" rows="4" required></textarea>
+                        <textarea name="message" placeholder="Mesajul tău" rows="4" required></textarea>
                     </div>
                     <button type="submit" class="btn-primary btn-large">Trimite Mesajul Acum</button>
                 </form>
