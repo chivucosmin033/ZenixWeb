@@ -23,8 +23,11 @@ export default async function handler(req, res) {
     try {
         const { messages, model } = req.body;
         
-        // Cheia adaugata manual (sigura in serverless function)
-        const API_KEY = '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';
+        // Cheia citita din Environment Variables (sigura, nu e vizibila in cod)
+        const API_KEY = process.env.NVIDIA_API_KEY;
+        if (!API_KEY) {
+            return res.status(500).json({ error: 'NVIDIA_API_KEY not configured in environment variables.' });
+        }
         const API_URL = 'https://integrate.api.nvidia.com/v1/chat/completions';
 
         const response = await fetch(API_URL, {
